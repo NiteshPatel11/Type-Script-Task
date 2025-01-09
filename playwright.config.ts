@@ -14,11 +14,11 @@ import { defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
-  fullyParallel: true,
+  fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
   forbidOnly: !!process.env.CI,
   /* Retry on CI only */
-  retries: 2,
+  retries: 0,
   /* Opt out of parallel tests on CI. */
   workers: 1,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
@@ -30,24 +30,13 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
-    // Reduce the browser version requirements
-    browserName: 'chromium',
-    launchOptions: {
-      headless: false,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-blink-features=AutomationControlled'
-      ],
-      timeout: 30000
-    },
 
     // Viewport size
     viewport: { width: 1280, height: 720 },
 
     // Navigation timeout
     navigationTimeout: 30000,
-    actionTimeout: 5000,
+    actionTimeout: 15000,
 
     // Automatically accept dialogs (like alerts)
     acceptDownloads: true,

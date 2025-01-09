@@ -4,10 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "test": "npx playwright test",
     "test:debug": "PWDEBUG=1 npx playwright test",
     "test:headed": "npx playwright test --headed",
     "test:ui": "npx playwright test --ui",
+    "test:login": "npx playwright test tests/facebook-login.spec.ts --headed",
+    "test:signup": "npx playwright test tests/facebook-signup.spec.ts --headed",
+    "test:demoqa": "npx playwright test tests/DemoQaTest.spec.ts --headed",
+    "test:api": "npx playwright test tests/Api.spec.ts --headed",
     "report": "npx playwright show-report"
   },
   "author": "",
@@ -15,6 +20,7 @@
   "devDependencies": {
     "@playwright/test": "1.39.0",
     "@types/node": "^20.11.16",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "playwright": "^1.39.0"
   }
 }

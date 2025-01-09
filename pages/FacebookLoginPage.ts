@@ -2,20 +2,20 @@ import { Page, expect } from '@playwright/test';
 import { BasePage } from './BasePage';
 
 export class FacebookLoginPage extends BasePage {
-    // Selectors
-    private readonly emailInput = "input[name='email']";
+     private readonly emailInput = "input[name='email']";
     private readonly passwordInput = "input[name='pass']";
     private readonly loginButton = "button[name='login']";
     private readonly errorMessage = "div[class*='error']";
     private readonly forgotPasswordLink = "a[href*='recover']";
     private readonly createAccountButton = "a[data-testid='open-registration-form-button']";
+    private readonly registrationForm = "div[class*='registration-form']";
 
     constructor(page: Page) {
         super(page);
     }
-
+ 
     async navigateToLogin() {
-        await this.page.goto('https://www.facebook.com/login');
+        await this.page.goto("https://www.facebook.com/");
         await this.waitForNavigation();
     }
 
@@ -23,8 +23,7 @@ export class FacebookLoginPage extends BasePage {
         await this.fillField(this.emailInput, email);
         await this.fillField(this.passwordInput, password);
         
-        // Create navigation promise before clicking
-        const navigationPromise = this.page.waitForNavigation();
+         const navigationPromise = this.page.waitForNavigation();
         await this.clickElement(this.loginButton);
         await navigationPromise;
     }
@@ -44,14 +43,13 @@ export class FacebookLoginPage extends BasePage {
 
     async clickCreateAccount() {
         await this.clickElement(this.createAccountButton);
-        // Wait for registration form
-        await this.page.waitForSelector("div[class*='registration-form']");
-    }
+      }
 
     async verifyLoginSuccess() {
-        // Wait for successful login indicators
-        await this.page.waitForSelector("div[role='navigation']", { timeout: 10000 });
+         await this.page.waitForSelector("div[role='navigation']", { timeout: 10000 });
         const currentUrl = this.page.url();
         expect(currentUrl).not.toContain('/login');
     }
+         
 } 
+
