@@ -13,6 +13,7 @@
     "test:signup": "npx playwright test tests/facebook-signup.spec.ts --headed",
     "test:demoqa": "npx playwright test tests/DemoQaTest.spec.ts --headed",
     "test:api": "npx playwright test tests/Api.spec.ts --headed",
+    "test:play": "npx playwright test tests/navbar.spec.ts --headed",
     "report": "npx playwright show-report"
   },
   "author": "",
